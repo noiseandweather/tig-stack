@@ -2,6 +2,7 @@ version: "3"
 
 services:
   influxdb:
+    container_name: influxdb
     image: influxdb:latest
     volumes:
       - influxdb-storage:/var/lib/influxdb2:rw
@@ -23,6 +24,7 @@ services:
        GRAFANA_PORT: ${GRAFANA_PORT}  
 
   telegraf:
+    container_name: telegraf
     image: telegraf:latest
     environment:  
        DOCKER_INFLUXDB_INIT_MODE: ${DOCKER_INFLUXDB_INIT_MODE}
@@ -42,6 +44,7 @@ services:
       - influxdb
 
   grafana:
+    container_name: grafana
     image: grafana/grafana-oss:latest
     volumes:
       - grafana-storage:/var/lib/grafana:rw
