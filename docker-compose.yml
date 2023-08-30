@@ -3,6 +3,8 @@ version: "3"
 services:
   influxdb:
     image: influxdb:latest
+    env_file:
+      - stack.env
     volumes:
       - influxdb-storage:/var/lib/influxdb2:rw
     entrypoint: ["./entrypoint.sh"]
@@ -12,6 +14,8 @@ services:
 
   telegraf:
     image: telegraf:latest
+    env_file:
+      - stack.env
     volumes:
       - ${TELEGRAF_CFG_PATH}:/etc/telegraf/telegraf.conf:rw
     depends_on:
